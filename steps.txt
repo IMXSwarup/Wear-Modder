@@ -1,0 +1,31 @@
+https://www.reddit.com/r/WearOS/comments/tjgejg/how_to_scale_the_interface_of_your_apps_on_wear/
+
+https://github.com/moneytoo/WearModder/releases/tag/v20200225
+
+
+
+
+Java -jar apktool.jar d wa.apk
+
+Java -jar apktool.jar -r d wa.apk
+
+java -jar wearmodder.jar wa/res
+
+java -jar apktool.jar b --use-aapt2 -o out/wam.apk wa/
+
+keytool -genkey -v -keystore my-key.keystore -alias alias_name -keyalg RSA -keysize 2048 -validity 10000
+
+keytool -genkey -v -keystore my-wa-key.keystore -alias wa_alias -keyalg RSA -keysize 2048 -validity 10000
+
+@Wakeystore123
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-key.keystore apk_name/dist/apk_name.apk alias_name
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-wa-key.keystore out/wam.apk wa_alias
+
+jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my-wa-key.keystore wam.apk wa_alias
+
+in attrs.xml
+
+<attr name="state_dragged" format="boolean" />
+<attr name="state_with_icon" format="boolean" />
